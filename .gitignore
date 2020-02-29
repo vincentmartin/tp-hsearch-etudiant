@@ -1,0 +1,6 @@
+/target/
+/settings
+/index
+*.dll
+index/
+.settings/

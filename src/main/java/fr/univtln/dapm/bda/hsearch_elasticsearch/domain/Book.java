@@ -2,26 +2,16 @@ package fr.univtln.dapm.bda.hsearch_elasticsearch.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
-import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
-import org.apache.lucene.analysis.core.StopFilterFactory;
-import org.apache.lucene.analysis.ngram.EdgeNGramFilterFactory;
-import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
-import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Analyzer;
-import org.hibernate.search.annotations.AnalyzerDef;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Parameter;
-import org.hibernate.search.annotations.Store;
-import org.hibernate.search.annotations.TokenFilterDef;
-import org.hibernate.search.annotations.TokenizerDef;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
 /**
  * Entité indexable représentant un livre.
@@ -31,24 +21,20 @@ import org.hibernate.search.annotations.TokenizerDef;
  */
 @Entity
 @Indexed
-@AnalyzerDef(name = "m1dapmAnalyzer", tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), filters = {
-		@TokenFilterDef(factory = LowerCaseFilterFactory.class),
-		@TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
-				@Parameter(name = "language", value = "English") }),
-		@TokenFilterDef(factory = StopFilterFactory.class),
-		@TokenFilterDef(factory = EdgeNGramFilterFactory.class, params = {
-				@Parameter(name = "minGramSize", value = "2"), @Parameter(name = "maxGramSize", value = "20") }) })
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
 	private int id;
-	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
+	@FullTextField
 	private String title;
-	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO, analyzer = @Analyzer(definition = "m1dapmAnalyzer"))
+	@FullTextField
 	@Lob
 	private String content;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@IndexedEmbedded
+
 	private transient double score;
 
 	public int getId() {
@@ -85,7 +71,7 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return title;
+		return "Book [id=" + id + ", title=" + title + "]";
 	}
 
 }

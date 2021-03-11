@@ -12,7 +12,7 @@ Pour cela, vous allez partir d'un projet JPA très simple permettant de gérer d
 - de personnaliser votre indexation et vos recherches
 - de déléguer l'indexation et les recherche à Eleasticsearch
 
-**Evaluation** : L'évaluation portera sur le projet complété de vos réponse que vous déposez sur Moodle avant le **27-03-2020 minuit** et en **ayant pris soin de supprimer le dossier data**.
+**Evaluation** : L'évaluation portera sur le projet complété de vos réponse que vous déposez sur Moodle avant la **date indiquée sur Moodle** et en **ayant pris soin de supprimer le dossier data**.
 
 ## Pré-requis
 
@@ -50,7 +50,7 @@ Afin d'améliorer notre projet, ajoutons lui quelques entités afin de pouvoir e
 
 2. Ajouter ensuite les relations entre les différentes entités (un livre a un auteur et un genre) puis créer quelques instances d'entités (vous pouvez utiliser des données factices).
 
-3. Annoter les deux entités pour les rendre indexables. Vous pouvez utiliser l' **Analyzer** défini dans l'entité _Book_(il n'est pas nécessaire de le redéfinir).
+3. Annoter les deux entités pour les rendre indexables. Vous pouvez utiliser l' **Analyzer** si vous en avez défini un.
 
 4. Ajouter une fonctionnalité permettant de filtrer la recherche d'un livre sur un auteur
 
@@ -59,18 +59,3 @@ Afin d'améliorer notre projet, ajoutons lui quelques entités afin de pouvoir e
 ## Indexation dans Elasticsearch
 
 Elasticsearch est un moteur de recherche distribué, alors profitons de sa puissance pour stocker nos index à l'intérieur et déporter les recherches à Elasticsearch.
-
-
-
-### Migration vers Hibernate Search 6
-
-- La version stable d'Hibernate Search ([https://hibernate.org/search/releases/5.11/](https://hibernate.org/search/releases/5.11/)) est compatible avec Elasticsearch version 5.6 maximum.
-- La version de développement d'Hibernate Search 6 Beta 5 ([https://hibernate.org/search/releases/6.0/](https://hibernate.org/search/releases/6.0/)) prend en charge Elasticsearch 7.6 déployé au TP précédent.
-- La vie d'un développeur c'est aussi de gérer les montés en version et d'adapter le code existant.
-
-
-En vous aidant de la documentation d'Hibernate Search 6 et du guide de migration ([https://docs.jboss.org/hibernate/search/6.0/reference/en-US/html\_single/](https://docs.jboss.org/hibernate/search/6.0/reference/en-US/html_single/)), effectuer les modification nécessaires pour indexer les données dans Elasticsearch. Pour cela :
-
-1. Modifier le fichier _pom.xml_ pour utiliser Hibernate Search 6 Beta 5 ;
-2. Modifier le fichier _persistence.xml_ pour que les index soient stockés dans Elasticsearch ;
-3. Modifier le code en suivant le guide de migration.

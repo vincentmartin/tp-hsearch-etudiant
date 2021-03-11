@@ -11,11 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.hibernate.search.engine.ProjectionConstants;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.FullTextQuery;
-import org.hibernate.search.jpa.Search;
-import org.hibernate.search.query.dsl.QueryBuilder;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 
 import fr.univtln.dapm.bda.hsearch_elasticsearch.domain.Book;
 import fr.univtln.dapm.bda.hsearch_elasticsearch.domain.BookResult;
@@ -29,10 +26,10 @@ import fr.univtln.dapm.bda.hsearch_elasticsearch.domain.BookResult;
 public class IndexSearchApi {
 	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bda");
 	private EntityManager entityManager = entityManagerFactory.createEntityManager();
-	private FullTextEntityManager fullTextSession = Search.getFullTextEntityManager(entityManager);
+	private SearchSession fullTextSession = Search.session(entityManager);
 
 	public void purgeIndex() {
-		fullTextSession.purgeAll(Book.class);
+		// entityManager.pur
 	}
 
 	public boolean indexFilesInFolder(String folderPath) throws IOException {
@@ -62,24 +59,14 @@ public class IndexSearchApi {
 	public List<BookResult> searchInTitle(String query) {
 		List<BookResult> bookResults = new ArrayList<>();
 
-		entityManager.getTransaction().begin();
+		List<List<?>> results = fullTextSession.search(Book.class).select(f -> f.composite(f.score(), f.entity()))
+				.where(f -> f.match().fields("title").matching(query)).fetchAllHits();
 
-		QueryBuilder queryBuilder = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Book.class).get();
-		org.apache.lucene.search.Query luceneQuery = queryBuilder.simpleQueryString().onFields("title").matching(query)
-				.createQuery();
-		FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
-
-		// projection du score (requête, document)
-		fullTextQuery.setProjection(ProjectionConstants.SCORE, ProjectionConstants.THIS);
-		fullTextQuery.setMaxResults(5);
-		List<Object[]> results = fullTextQuery.getResultList();
-
-		for (Object[] result : results) {
-			float score = (float) result[0];
-			Book book = (Book) result[1];
+		for (List<?> result : results) {
+			float score = (float) result.get(0);
+			Book book = (Book) result.get(1);
 			bookResults.add(new BookResult(book, score));
 		}
-		entityManager.getTransaction().commit();
 
 		return bookResults;
 	}

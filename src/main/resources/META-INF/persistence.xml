@@ -6,8 +6,6 @@
 
 	<persistence-unit name="bda"
 		transaction-type="RESOURCE_LOCAL">
-		<class>org.lsis.vmartin.d21.demo_jpa.domain.Book</class>
-
 		<properties>
 			<!-- Gestion SCHEMA -->
 			<property
@@ -36,7 +34,9 @@
 			<property name="hibernate.search.backend.directory.root"
 				value="./index" />
 
-
+			<property
+				name="hibernate.search.backend.analysis.configurer"
+				value="class:fr.univtln.dapm.bda.hsearch_elasticsearch.search.M1DidAnalyzer" />
 
 		</properties>
 	</persistence-unit>

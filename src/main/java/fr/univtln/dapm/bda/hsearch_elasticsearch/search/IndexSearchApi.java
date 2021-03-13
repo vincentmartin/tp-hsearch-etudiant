@@ -29,7 +29,8 @@ public class IndexSearchApi {
 	private SearchSession fullTextSession = Search.session(entityManager);
 
 	public void purgeIndex() {
-		// entityManager.pur
+		Search.mapping(entityManagerFactory).scope(Book.class).workspace().purge();
+		fullTextSession.indexingPlan().execute();
 	}
 
 	public boolean indexFilesInFolder(String folderPath) throws IOException {

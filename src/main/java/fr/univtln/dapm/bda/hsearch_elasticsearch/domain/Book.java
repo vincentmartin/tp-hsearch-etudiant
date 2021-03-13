@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.engine.backend.types.Projectable;
+import org.hibernate.search.engine.backend.types.TermVector;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
@@ -27,14 +29,11 @@ public class Book implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	@FullTextField
+	@FullTextField(analyzer = "m1_did_analyzer", projectable = Projectable.YES, termVector = TermVector.WITH_POSITIONS_OFFSETS)
 	private String title;
-	@FullTextField
+	@FullTextField(analyzer = "m1_did_analyzer", projectable = Projectable.YES, termVector = TermVector.WITH_POSITIONS_OFFSETS)
 	@Lob
 	private String content;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@IndexedEmbedded
-
 	private transient double score;
 
 	public int getId() {
@@ -71,7 +70,8 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + "]";
+		return "Book [id=" + id + ", title=" + title + ", content="
+				+ (content.length() < 50 ? content.toString() : content.substring(0, 50)) + "]";
 	}
 
 }

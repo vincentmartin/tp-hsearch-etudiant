@@ -38,7 +38,7 @@ public class BookResult implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BookResult [book=" + book + ", score=" + score + "]";
+		return "BookResult [book=" + "{" + book.getId() + "} - " + book.getTitle() + ", score=" + score + "]";
 	}
 
 }

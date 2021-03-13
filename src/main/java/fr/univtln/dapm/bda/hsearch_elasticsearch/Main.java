@@ -15,7 +15,8 @@ public class Main {
 		api.indexFilesInFolder(Main.class.getResource("/data/raw").getFile());
 
 		// Recherche.
-		System.out.println(api.searchInTitle("pilgrimge tale"));
+		System.out.println("Recherche de 'pilgrime tale' dans le titre : "
+				+ api.searchInTitle("pilgrimge tale"));
 
 		System.exit(0);
 	}

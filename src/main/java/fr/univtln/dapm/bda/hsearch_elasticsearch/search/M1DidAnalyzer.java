@@ -16,7 +16,7 @@ public class M1DidAnalyzer implements LuceneAnalysisConfigurer {
 		context.analyzer("m1_did_analyzer").custom().tokenizer(StandardTokenizerFactory.class)
 				.tokenFilter(LowerCaseFilterFactory.class).tokenFilter(StopFilterFactory.class)
 				.tokenFilter(ASCIIFoldingFilterFactory.class).tokenFilter(SnowballPorterFilterFactory.class)
-				.param("language", "French").tokenFilter(EdgeNGramFilterFactory.class).param("minGramSize", "3")
+				.param("language", "English").tokenFilter(EdgeNGramFilterFactory.class).param("minGramSize", "3")
 				.param("maxGramSize", "7");
 	}
 

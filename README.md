@@ -59,3 +59,5 @@ Afin d'améliorer notre projet, ajoutons lui quelques entités afin de pouvoir e
 ## Indexation dans Elasticsearch
 
 Elasticsearch est un moteur de recherche distribué, alors profitons de sa puissance pour stocker nos index à l'intérieur et déporter les recherches à Elasticsearch.
+
+Pour cela, aidez-vous de la documentation : https://docs.jboss.org/hibernate/stable/search/reference/en-US/html_single/#backend-elasticsearch

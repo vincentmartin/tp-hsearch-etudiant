@@ -57,7 +57,7 @@ Afin d'améliorer notre projet, ajoutons lui quelques entités afin de pouvoir e
 
 5. Ajouter une fonctionnalité permettant de filtrer la recherche d'un livre sur un genre particulier. La recherche devra être tolérante aux fautes.
 
-# Partie 2 - Connexion avec avec OpenSearch
+# Partie 2 - Connexion avec OpenSearch
 
 OpenSearch est un moteur de recherche distribué, alors profitons de sa puissance pour stocker nos index à l'intérieur et déporter les recherches à OpenSearch.
 

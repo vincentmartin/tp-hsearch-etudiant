@@ -68,3 +68,12 @@ OpenSearch est un moteur de recherche distribué, alors profitons de sa puissanc
 3. Modifier la classe ``M1DidAnalyzer.java`` pour prendre en compte la configuration de l'analyseur délégué à OpenSearch. La classe doit implémenter ``ElasticsearchAnalysisConfigurer``
 
 Pour cela, aidez-vous de la documentation : https://docs.jboss.org/hibernate/stable/search/reference/en-US/html_single/#backend-elasticsearch
+
+# Partie 3 (Optionnelle) - Pour aller plus loin
+
+Mettre en place une solution pour que l'utilisateur puisse interagir avec le moteur de recherche au travers de commandes entrées dans le terminal à l'exécution de la classe exécutable ``Main``. L'utilisateur devra pouvoir :
+
+- Pouvoir faire une recherche sur l'ensemble des champs
+- Pouvoir faire une recherche dans le titre uniquement
+- Pouvoir faire une recherche dans le titre et les contenus
+- Pouvoir rechercher les livres ayant un contenu similaire un autre dont l'identifiant est spécifié par l'utilisateur. A vous de trouver la meilleure approche !

@@ -76,4 +76,4 @@ Mettre en place une solution pour que l'utilisateur puisse interagir avec le mot
 - Pouvoir faire une recherche sur l'ensemble des champs
 - Pouvoir faire une recherche dans le titre uniquement
 - Pouvoir faire une recherche dans le titre et les contenus
-- Pouvoir rechercher les livres ayant un contenu similaire un autre dont l'identifiant est spécifié par l'utilisateur. A vous de trouver la meilleure approche !
+- Pouvoir rechercher les livres ayant un contenu similaire ) un autre dont l'identifiant est spécifié par l'utilisateur. A vous de trouver la meilleure approche !

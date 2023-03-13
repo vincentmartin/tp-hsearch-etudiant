@@ -12,7 +12,7 @@ Pour cela, vous allez partir d'un projet JPA très simple permettant de gérer d
 - de personnaliser votre indexation et vos recherches
 - de déléguer l'indexation et les recherche à Eleasticsearch
 
-**Evaluation** : L'évaluation portera sur le projet complété de vos réponse que vous déposez sur Moodle avant la **date indiquée sur Moodle** et en **ayant pris soin de supprimer le dossier data**.
+**Evaluation** : L'évaluation portera sur le projet complété de vos réponse que vous déposerez au format zip sur Moodle avant la **date indiquée sur Moodle** et en **ayant pris soin de supprimer le dossier data**.
 
 ## Pré-requis
 

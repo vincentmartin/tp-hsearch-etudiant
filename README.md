@@ -18,7 +18,7 @@ Pour cela, vous allez partir d'un projet JPA très simple permettant de gérer d
 
 - Java >=8
 - Une base de données relationnelle (Postgresql ou Mariadb) ⇒ Images docker fournies
-- OpenSearch ⇒ Images docker fournies
+- OpenSearch ⇒ Utiliser l'image du TP ELK (https://github.com/vincentmartin/tp-elk)
 
 ## Récupération et importation du projet squelette
 
